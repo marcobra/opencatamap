@@ -12,3 +12,5 @@ Per ottenere una piena funzionalità la cartografia OpenStreetMap deve essere, e
 
 Questo insieme di software e' rivolto agli uffici tecnici comunali e  alla Pubblica Amministrazione italiana, in quanto i dati che si andranno a manovrare non sono dati aperti.
 In questo repository, pertanto non saranno mai distribuiti dati catastali, atti a testare l'applicazione, pertanto è necessario possedere archivi catastali di propria competenza.
+
+Per ora (12 gen 2017) il software pur essendo funzionante non viene ancora distribuito tramite github.
