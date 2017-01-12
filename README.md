@@ -24,7 +24,7 @@ Questo software non prevede installazioni di webserver neppure di dbserver parti
 All'applicazione si accede: in locale via web da 127.0.0.1:8080, o da altro pc in rete da 192.168.X.X:8080
 
 Il software richiede l'installazione di Python sul pc, ed anche altri moduli python, deve essere installato anche il modulo  
-https://www.gaia-gis.it/fossil/libspatialite/wiki?name=mod_spatialite necessario per la visualizzazione delle mappe che in certi casi è necessario compilare da sorgenti.
+https://www.gaia-gis.it/fossil/libspatialite/wiki?name=mod_spatialite atto alla visualizzazione delle mappe, su certi sistemi operativi (in Mac osx e versioni di Ubuntu inferiori alla 16.04) è necessario compilare questo modulo da sorgenti (sono gradite smentite).
 
 Cio' che è richiesto per il funzionamento sui vari sistemi Linux, Mac, Linux verrà specificato in dettaglio prossimamente.
 
