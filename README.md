@@ -2,12 +2,13 @@
 Ricerca e visualizzazione in mappa di dati catastali: urbano e catasto terreni
 
 E' una serie di script in Python che consentono la ricerca e la visualizzazione in mappe web
-dei dati catastali prima importati (scaricandoli dalle forniture di Sister) nel software "Visualizzazione Forniture Catastali" (da ora abbreviato in VFC) e poi esportati come copia di backup appunto da VFC.
+dei dati catastali prima importati (scaricandoli dalle forniture di Sister) nel software "Visualizzazione Forniture Catastali" (da ora abbreviato in VFC) e poi esportati come copia di backup appunto da VFC. ( opencatamap/data/catasto.db )
 
 OpenCataMap e' utilizzabile con archivi catasto urbano e catasto terreni.
 Si avvale della cartografia catastale (particelle terreni) che viene usata per le visualizzazioni, sovrapposizioni a livelli di mappe di base.
 
 Detta cartografia, al primo impianto del software e poi nei successivi aggiornamenti, deve essere importata in qgis tramite il plugin cxf_in ed esportata poi in un file spatialite, il file che viene usato per la visualizzazione dei dettagli cartografici.
+( opencatamap/data/catasto_cart_4326.sqlite )
 
 Le mappe di base sono personalizzabili, e' pertanto possibile visualizzare delle tiles prodotte dalla Cartografia Tecnica Regionale CTR del vostro comune.
 La CTR deve essere georeferenziata e va' trasformata in tiles (in Linux con gdal2tiles) che poi andranno poste nella cartella custom_tiles dell'ambiente. ( opencatamap/cust_tiles/ctr )
