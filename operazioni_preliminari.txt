@@ -1,4 +1,4 @@
-Operazioni preliminari da eseguire sui vari sistemi per avere l'ambiente corretto per l'esecuzione degli script:
+Operazioni preliminari da eseguire in dipendenza del vostro sistema operativo per ottenere l'ambiente corretto all'esecuzione degli scripts python ed a rendere disponibili a python i moduli che sono necessari :
 
 == Linux
 
