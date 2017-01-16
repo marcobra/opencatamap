@@ -29,4 +29,6 @@ https://www.gaia-gis.it/fossil/libspatialite/wiki?name=mod_spatialite atto alla 
 
 Cio' che è richiesto per il funzionamento, sui vari sistemi: Linux, Mac, Windows verrà specificato in dettaglio prossimamente.
 
-Per ora (12 gen 2017) il software pur essendo funzionante (su Ubuntu Linux) non viene ancora distribuito tramite github.
+Per ora (16 gen 2017) il software pur essendo funzionante ( testato su Ubuntu Linux ed anche su windows 8 e windows 10), non viene ancora distribuito tramite github, il programma necessita ancora di un affinamento che che lo renda fruibile nel modo più semplice possibile su tutti i sistemi.
+
+
