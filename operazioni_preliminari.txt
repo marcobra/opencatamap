@@ -1,0 +1,34 @@
+Operazioni preliminari da eseguire sui vari sistemi per avere l'ambiente corretto per l'esecuzione degli script:
+
+== Linux
+
+
+== in Windows sia esso a 32 o 64 bits installare 
+1) python27 https://www.python.org/downloads/release/python-2713/ 
+durante l'installazione attivare l'opzione per aggiornare il path di sistema
+
+2) installare il modulo geojson tramite easy_install.exe
+c:\python27\script\easy_install geojoson
+
+3) installare 7zip servirà a scompattare la libreria qui al passaggio successivo
+http://www.7-zip.org/
+
+4) scaricare mod_spatialite
+http://www.gaia-gis.it/gaia-sins/windows-bin-x86/mod_spatialite-4.3.0a-win-x86.7z
+scompattarlo in una cartella ad esempio C:\sqlite3 (ma si puo' usare una cartella a piacere) 
+verranno estratti una serie di file .dll e sqlite3.exe già da qui possiamo testare se il 
+modulo mod_spatiaite viene caricato da sqlite3 digitando:
+
+sqlite3 -cmd "select load_extension('mod_spatialite')"
+non si devono vedere messaggi di errore, digitare .exit ed invio per uscire da sqlite3.
+
+Poi bisogna far in modo che le dll estratte possano essere caricate dinamicamente dagli script python
+in particolare il file mod_spatialite.dll 
+abbiamo testato 2 soluzioni che non "sporcano" il sistema più di tanto:
+
+a) in windows10 basterà copiare mod_spatialite.dll nella directory \pyhon27\DLLs\
+a) in windows 8 non e' valsa la cosa ed e' stato necessario copiare tutti i files .dll
+presenti in C:\sqlite3 (vedi sopra) nella directory c:\python27\scripts\ 
+
+
+== Mac
