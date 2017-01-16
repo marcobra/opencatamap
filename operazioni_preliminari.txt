@@ -4,11 +4,11 @@ Operazioni preliminari da eseguire sui vari sistemi per avere l'ambiente corrett
 
 
 == in Windows sia esso a 32 o 64 bits installare 
-1) python27 https://www.python.org/downloads/release/python-2713/ 
+1) python27 a 32 bits https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi
 durante l'installazione attivare l'opzione per aggiornare il path di sistema
 
 2) installare il modulo geojson tramite easy_install.exe
-c:\python27\script\easy_install geojoson
+c:\Python27\Scripts\easy_install.exe geojson
 
 3) installare 7zip servirà a scompattare la libreria qui al passaggio successivo
 http://www.7-zip.org/
