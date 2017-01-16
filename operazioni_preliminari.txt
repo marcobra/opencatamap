@@ -17,7 +17,7 @@ http://www.7-zip.org/
 http://www.gaia-gis.it/gaia-sins/windows-bin-x86/mod_spatialite-4.3.0a-win-x86.7z
 scompattarlo in una cartella ad esempio C:\sqlite3 (ma si puo' usare una cartella a piacere) 
 verranno estratti una serie di file .dll e sqlite3.exe già da qui possiamo testare se il 
-modulo mod_spatiaite viene caricato da sqlite3 digitando:
+modulo mod_spatialite viene caricato da sqlite3 digitando:
 
 sqlite3 -cmd "select load_extension('mod_spatialite')"
 non si devono vedere messaggi di errore, digitare .exit ed invio per uscire da sqlite3.
