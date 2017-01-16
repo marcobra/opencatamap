@@ -26,9 +26,9 @@ Poi bisogna far in modo che le dll estratte possano essere caricate dinamicament
 in particolare il file mod_spatialite.dll 
 abbiamo testato 2 soluzioni che non "sporcano" il sistema più di tanto:
 
-a) in windows10 basterà copiare mod_spatialite.dll nella directory \pyhon27\DLLs\
-a) in windows 8 non e' valsa la cosa ed e' stato necessario copiare tutti i files .dll
-presenti in C:\sqlite3 (vedi sopra) nella directory c:\python27\scripts\ 
+a) in windows10 basterà copiare mod_spatialite.dll nella directory C:\pyhon27\DLLs\
+a) in windows8 non e' valsa la cosa ed e' stato necessario copiare tutti i files .dll
+presenti in C:\sqlite3 (vedi sopra) nella directory C:\python27\scripts\ 
 
 
 == Mac
