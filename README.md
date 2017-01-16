@@ -1,5 +1,6 @@
 # opencatamap
 Ricerca e visualizzazione in mappa di dati catastali: urbano e catasto terreni
+ricerca per possessore e geolocalizzazione del civico, ricerca per possessore e visualizzazione in cartografia delle particelle ad esso collegate. Individuazione dei possessori cliccando su mappa delle particelle.
 
 E' una serie di script in Python che consentono la ricerca e la visualizzazione in mappe web
 dei dati catastali prima importati (scaricandoli dalle forniture di Sister) nel software "Visualizzazione Forniture Catastali" (da ora abbreviato in VFC) e poi esportati come copia di backup appunto da VFC. ( opencatamap/data/catasto.db )
