@@ -1,7 +1,7 @@
 Operazioni preliminari da eseguire in dipendenza del vostro sistema operativo per ottenere l'ambiente corretto all'esecuzione degli scripts python ed a rendere disponibili a python i moduli che sono necessari :
 
 == Linux
-
+... mettero' a presto note dettagliate
 
 == in Windows sia esso a 32 o 64 bits installare
 
@@ -32,3 +32,4 @@ copiare tutti i files .dll presenti in C:\sqlite3 (vedi sopra) nella directory C
 
 
 == Mac
+... serve una persona con mac che possa provare a compilare sul suo pc alcune cose al fine di ottenere dettagliato howto da riportare qui
