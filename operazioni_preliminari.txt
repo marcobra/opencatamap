@@ -1,9 +1,16 @@
 Operazioni preliminari da eseguire in dipendenza del vostro sistema operativo per ottenere l'ambiente corretto all'esecuzione degli scripts python ed a rendere disponibili a python i moduli che sono necessari :
 
-== Linux
-... mettero' a presto note dettagliate
+** Linux
+in ubuntu 16.10 installare 
+sudo apt-get-install python-spatialite python-geojson
 
-== in Windows sia esso a 32 o 64 bits installare
+oppure per versioni precedenti ad esempio Ubuntu 14.04: 
+
+sudo apt-get-install python-spatialite
+sudo pip --proxy http://127.0.0.1:3128/ install geojson
+
+
+** in Windows sia esso a 32 o 64 bits installare
 
 1) python27 a 32 bits https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi
 durante l'installazione attivare l'opzione per aggiornare il path di sistema
