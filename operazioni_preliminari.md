@@ -1,6 +1,6 @@
 Operazioni preliminari da eseguire in dipendenza del vostro sistema operativo per ottenere l'ambiente corretto all'esecuzione degli scripts python ed a rendere disponibili a python i moduli che sono necessari :
 
-** Linux
+**Linux**
 in ubuntu 16.10 installare 
 sudo apt-get-install python-spatialite python-geojson
 
@@ -13,7 +13,7 @@ Se c'e' un proxy da attraversare (nel mio caso ho impostato un proxy locale con 
 sudo pip --proxy http://127.0.0.1:3128/ install geojson
 
 
-** in Windows sia esso a 32 o 64 bits installare
+**in Windows sia esso a 32 o 64 bits installare**
 
 1) python27 a 32 bits https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi
 durante l'installazione attivare l'opzione per aggiornare il path di sistema
@@ -40,5 +40,5 @@ abbiamo poi adottato questa soluzione per rendere disponibili le .dll che non "s
 copiare tutti i files .dll presenti in C:\sqlite3 (vedi sopra) nella directory C:\python27\scripts\
 
 
-** Mac
+**Mac**
 ... serve una persona con mac che possa provare a compilare sul suo pc alcune cose al fine di ottenere dettagliato howto da riportare qui
