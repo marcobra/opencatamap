@@ -9,3 +9,5 @@ dei dati catastali prima importati (scaricandoli dalle forniture di Sister) nel 
 OpenCataMap e' utilizzabile con archivi catasto urbano e catasto terreni.
 Si avvale della cartografia catastale (particelle terreni) che viene usata per le visualizzazioni, sovrapposizioni a livelli di mappe di base.
 E' rivolto ad un'utenza che tratta dati che hanno attinenza con interrogazioni catastali e cartografiche.
+
+Maggiori dettagli qui: https://github.com/marcobra/opencatamap/wiki/OpenCataMap
