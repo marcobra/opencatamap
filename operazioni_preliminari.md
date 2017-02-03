@@ -3,11 +3,11 @@
 **---- Linux**
 in ubuntu 16.10 installare 
 
-sudo apt-get-install python-spatialite python-geojson
+sudo apt-get install python-pyspatialite python-geojson
 
 oppure per versioni precedenti ad esempio Ubuntu 14.04: 
 
-sudo apt-get-install python-spatialite
+sudo apt-get install python-pyspatialite
 
 sudo pip install geojson
 
