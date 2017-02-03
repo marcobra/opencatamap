@@ -3,17 +3,17 @@
 **---- Linux**
 in ubuntu 16.10 installare 
 
-sudo apt-get install python-pyspatialite python-geojson
+    sudo apt-get install python-pyspatialite python-geojson
 
 oppure per versioni precedenti ad esempio Ubuntu 14.04: 
 
-sudo apt-get install python-pyspatialite
+    sudo apt-get install python-pyspatialite
 
-sudo pip install geojson
+    sudo pip install geojson
 
 Se c'e' un proxy da attraversare (nel mio caso ho impostato un proxy locale con cntml per attraversare il proxy di rete)
 
-sudo pip --proxy http://127.0.0.1:3128/ install geojson
+    sudo pip --proxy http://127.0.0.1:3128/ install geojson
 
 
 **---- In Windows sia esso a 32 o 64 bits installare**
