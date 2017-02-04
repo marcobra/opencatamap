@@ -7,7 +7,7 @@ in ubuntu 16.10 installare
 
 oppure per versioni precedenti ad esempio Ubuntu 14.04: 
 
-    sudo apt-get install python-pyspatialite
+    sudo apt-get install python-pyspatialite python-pip
 
     sudo pip install geojson
 
