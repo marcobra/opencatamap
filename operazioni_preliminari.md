@@ -10,7 +10,9 @@ oppure per versioni precedenti ad esempio Ubuntu 14.04:
     sudo apt-get install python-pyspatialite python-pip
 
     sudo pip install geojson
-
+    cd /usr/lib/x86_64-linux-gnu/
+    sudo ln -s libspatialite.so.5 libspatialite.so
+ 
 Se c'e' un proxy da attraversare (nel mio caso ho impostato un proxy locale con cntml per attraversare il proxy di rete)
 
     sudo pip --proxy http://127.0.0.1:3128/ install geojson
