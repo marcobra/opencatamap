@@ -11,3 +11,4 @@ Si avvale della cartografia catastale (particelle terreni) che viene usata per l
 E' rivolto ad un'utenza che tratta dati che hanno attinenza con interrogazioni catastali e cartografiche.
 
 Ulteriori dettagli qui: https://github.com/marcobra/opencatamap/wiki/OpenCataMap
+E' presente e consigliata la parte php che aggiunge migliori funzionalità alla parte python integrandosi: https://github.com/cxc61cxc/opencatamap-php 
