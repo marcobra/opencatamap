@@ -156,7 +156,7 @@ def main():
         mess+="Manca il file -- " + glofile
     if len(mess)>0:
       print mess
-    return 
+      return 
 
    
     if  (len(parametri) < 1):

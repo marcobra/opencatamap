@@ -75,7 +75,7 @@ def main():
         mess+="Manca il file -- " + glofile
     if len(mess)>0:
     	print mess
-     return
+        return
 
     if  (len(parametri) < 1):
         print "uso:<br> http://127.0.0.1:8080/cgi-bin/genera_html_su_urbano.py?N=Dam"
