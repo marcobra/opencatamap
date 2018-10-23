@@ -35,6 +35,9 @@ conn.enable_load_extension(True)
 # sotto in ubuntu 14.04 con libspatialite.so compilato da sorgenti
 # https://faimsproject.atlassian.net/wiki/display/FAIMS/Installing+Spatialite+4+on+Ubuntu
 
+if 'bionic' in platform.platform():
+   conn.execute('SELECT load_extension("mod_spatialite.so")')
+
 if 'zesty' in platform.platform():
    conn.execute('SELECT load_extension("mod_spatialite.so")')
 
