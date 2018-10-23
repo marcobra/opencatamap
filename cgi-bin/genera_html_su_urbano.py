@@ -74,7 +74,8 @@ def main():
     if not os.path.exists(glofile):
         mess+="Manca il file -- " + glofile
     if len(mess)>0:
-    	print mess
+        print mess + '<br>'
+        print '<a href=https://github.com/marcobra/opencatamap/wiki/OpenCataMap>Maggiori dettagli circa i files dati necessari<a>'
         return
 
     if  (len(parametri) < 1):
