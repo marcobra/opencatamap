@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Cerca per nominativo</title>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+<link rel="stylesheet" href="cxc.css" type="text/css" media="all">
+<!-- CSS -->
+<style type="text/css">
+  Body {
+  text-align: center;
+  }
+.myForm {
+font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+font-size: 0.8em;
+padding: 1em;
+border: 1px solid #ccc;
+border-radius: 3px;
+}
+
+.myForm * {
+box-sizing: border-box;
+}
+
+.myForm label {
+font-size: 0.9em;
+}
+
+.myForm .audioOnly {
+position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip: rect(0, 0, 0, 0);
+border: 0;
+}
+
+h3 {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.myForm input {
+border: 1px solid #ccc;
+border-radius: 3px;
+font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+font-size: 0.9em;
+padding: 0.5em;
+}
+
+/*.myForm input[type="f"],*/
+.myForm input[type="m"] {
+width: 12em;
+}
+
+.myForm button {
+padding: 0.7em;
+border-radius: 0.5em;
+background: #eee;
+border: none;
+font-weight: bold;
+margin-left: 1.5em;
+}
+
+ .myForm button:hover {
+background: #ccc;
+cursor: pointer;
+}
+
+
+input[type=text] {
+    padding: 2px 2px;
+    margin: 3px 0;
+    box-sizing: border-box;
+    border: 1em;
+}
+
+
+input[type=submit],[type=reset] {
+    padding: 2px 2px;
+    margin: 3px 0;
+    box-sizing: border-box;
+    border: 1em;
+}
+
+#terreni {background-color: #DEB887; padding: 0px 10px;}
+#urbano {background-color: #ccff66; padding: 0px 10px;}
+#fogli_terreni {background-color: #DEB887; padding: 0px 10px;}
+
+</style>
+
+</head>
+<body>
+
+
+<div id="urbano">
+<br>
+<label><b>Ricerca per nominativo/denominazione</b></label>
+<br><br>
+<form id="myForm" method="post" target = '_blank';>
+    <label>Cognome nome:</label> <input type="text" name="n" /><br />
+    <input type="submit" value="Cerca in Terreni" onClick="this.form.action='./cgi-bin/genera_html_su_terreni_mappa.py';" /> ---- 
+    <input type="submit" value="Cerca in Urbano" onClick="this.form.action='./cgi-bin/genera_html_su_urbano.py';" /><br />
+</form>
+</div>
+
+<br>
+
+<div id="fogli_terreni">
+<br>
+<b>Catasto terreni - mappe di interi fogli</b>
+<br><br>
+<form action="./ll/mappa_py_gen.html" target="_blank">
+Foglio in forma numerica da 1 a 999: <input type="text" name="f" value="1" maxlength="3"> 
+<input type="submit" value="Crea mappa">
+</form>
+</div>
+
+<br>
+
+<div id="fogli_terreni">
+<br>
+<b>Catasto terreni - mappa di elenco di mappali da lista letta da un file</b>
+<br><br>
+<form method='post' action='./cgi-bin/leggi_elenco_foglio_mappali.py' enctype='multipart/form-data' target="_blank">
+<!-- <form action="./cgi-bin/leggi_elenco_foglio_mappali.py" enctype="multipart/form-data" method="post"> -->
+<input type='file' name='datafile'>
+<pre>
+Selezionare un file di testo contenente un elenco di fogli e mappali scritti uno per riga in questo formato:
+25-110
+...-....
+</pre>
+<input type="submit" value="Crea mappa">
+</form>
+</div>
+
+
+<br>
+
+<div id="fogli_terreni">
+<br>
+<b>Catasto terreni - mappa di elenco di mappali da lista letta da un file</b>
+<br><br>
+<form method='post' action='./cgi-bin/leggi_foglio_mappali_incollati.py' enctype='multipart/form-data' target="_blank">
+<textarea id="incollati" name="incollati" rows="3" cols="120"></textarea>
+<pre>
+Incollare una lista di valori in questa forma foglio - mappale mappale mappale:
+25 - 110 344 455 677
+23-345 333 99 45
+</pre>
+<input type="submit" value="Crea mappa">
+</form>
+</div>
+
+
+<!-- http://127.0.0.1:8080/ll/mappa_py_dyn_mappa_evi.html?cFrom|foglio='0012' and mappale in (0035,0034) -->
+
+<br>
+
+
+</body>
+</html>
+

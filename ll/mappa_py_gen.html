@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Mappa catasto Terreni</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/javascript/leaflet.css"/>
+    <script src="/javascript/leaflet.js"></script>
+    <script src="/javascript/jquery-1.11.3.min.js"></script>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+
+<script language="JavaScript">
+
+    function getPara()
+    {
+        var parameters = location.search.substring(1).split("&");
+
+        var temp = parameters[0].split("=");
+        f = unescape(temp[1]);
+        //alert(cNumFog);
+    }
+
+getPara();
+</script>
+
+
+<div id='map'></div>
+
+
+<script src="leaflet-providers.js"></script>
+
+<script>
+	
+var myStyle = {
+    "color": "#ff0000",
+    "weight": 1,
+    "opacity": 0.65
+};
+
+var FiumStyle = {
+    "color": "blue",
+    "weight": 1,
+    "opacity": 0.65
+};
+
+var StraStyle = {
+    "color": "black",
+    "weight": 1,
+    "opacity": 0.85
+};
+
+var EdifStyle = {
+    "color": "brown",
+    "weight": 1,
+    "opacity": 0.90
+};
+
+
+
+var osmTiles = L.tileLayer.provider('OpenStreetMap');
+var osmgrigio  = L.tileLayer.provider('OpenStreetMap.BlackAndWhite');
+var esriworld  = L.tileLayer.provider('Esri.WorldImagery');
+
+var minx="8.58158510341350"
+var miny="44.37362932551235"
+var maxx="8.74939895901150"
+var maxy="44.47451414351876"
+
+
+var ctr= L.tileLayer('../cust_tiles/ctr/{z}/{x}/{y}.png', {
+       //noWrap: true,
+       crs: L.CRS.EPSG3857,
+       tms: true,   
+       bounds: [[miny,minx],[maxy,maxx]]
+    }).setOpacity(0.4)
+
+var map = L.map('map', {
+    center: [44.3967,8.6732],
+    zoom: 10,
+    layers: [osmTiles]
+});
+
+
+var baseMaps = {
+};
+
+
+var overlayMaps = {
+    "Openstreetmap": osmTiles,
+    "Esri World Imagery": esriworld,
+    "OpenstreetMap grigio": osmgrigio,
+    "Carta tecnica Regionale" : ctr
+};
+
+L.control.layers(baseMaps,overlayMaps).addTo(map);
+
+// sotto per far in modo che venga letto l'hostname del sito ma non la porta 8080 per costruire il link per la parte php 
+
+     
+$.getJSON("/cgi-bin/test_dy_gen.py?f="+f, function(data) { addDataToMap(data, map); });
+    
+
+var dataLayer=""    
+    //L.geoJson(myjson).addTo(map); 
+
+	function addDataToMap(data, map) {
+        dataLayer = L.geoJson(data, {  
+		style: function(feature) {
+		    switch (feature.properties.mappale) {
+	            case 'ACQUA': return FiumStyle;
+	            case 'STRADA':   return StraStyle;
+	            default: 
+	             if (feature.properties.mappale.indexOf('+') > 0) {
+	             	return EdifStyle;
+	             }	
+	             return myStyle;
+
+	        }},
+        onEachFeature: function(feature, layer) {
+            var popupText = "Foglio: " + feature.properties.foglio
+                + "<br>Mappale: " + feature.properties.mappale
+                + "<br><a href=http://"+document.location.hostname+"/cxc/nctr_results.php?f="+feature.properties.foglio+"&m="+feature.properties.mappale+" target=_blank>Ricerca possessori globale</a>"
+                + "<br><a href=/cgi-bin/genera_html_su_fog_map_ter.py?f="+feature.properties.foglio+"&m="+feature.properties.mappale+" target=_blank>Ricerca possessori in terreni</a>";
+            layer.bindPopup(popupText); }
+        });
+        
+        map.fitBounds(dataLayer.getBounds());
+        dataLayer.addTo(map);
+}  
+
+
+
+
+</script>
+
+
+</body>
+</html>
+

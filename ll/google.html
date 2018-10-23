@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Leaflet</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
+    <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+    <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
+  </head>
+  <body>
+    <div style="width:100%; height:600px" id="map"></div>
+    <script type='text/javascript'>
+      var map = new L.Map('map', {center: new L.LatLng(44.4200,8.6697), zoom:13});
+      //var googleLayer = new L.Google('ROADMAP');
+      var googleLayer = new L.Google('SATELLITE');
+      map.addLayer(googleLayer);
+    </script>
+  </body>
+</html>
+

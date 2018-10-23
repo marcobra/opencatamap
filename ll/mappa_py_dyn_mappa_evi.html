@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Mappa catasto Terreni</title>
+
+    <meta charset="utf-8" />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+
+    <link rel="stylesheet" href="/javascript/Control.OSMGeocoder.css" />
+    <link rel="stylesheet" href="/javascript/leaflet.css"/>
+    
+    <script src="/javascript/leaflet.js"></script>
+    <script src="/javascript/jquery-1.11.3.min.js"></script>
+    
+    <script src="/javascript/Control.OSMGeocoder.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        #autore, #export {
+            position: absolute;
+            top:50px;
+            right:10px;
+            z-index:500;
+            background:white;
+            color:black;
+            padding:6px;
+            border-radius:4px;
+            font-family: 'Helvetica Neue';
+            cursor: pointer;
+            font-size:12px;
+            text-decoration:none;
+        }
+        #export {
+            top:90px;
+        }
+        #autore {
+            background:black;
+            color:white;
+            top:120px;
+        }
+    </style>
+
+	<style>
+
+.info {top:150px; padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+
+</style>
+
+
+</head>
+<body>
+
+<script language="JavaScript">
+
+    function getPara()
+    {
+        var parameters = location.search.substring(1).split("&");
+        //alert(parameters);
+        var temp = parameters[0].split("|");
+        cFrom = unescape(temp[1]);
+    }
+
+getPara();
+</script>
+
+
+<div id='map'></div>
+<a href='#' id='export'>Esporta geojson</a>
+<a href='https://github.com/marcobra/opencatamap/' target=_blank id='autore'>Info</a>
+
+<script src="leaflet-providers.js"></script>
+
+<script>
+    
+
+var osmTiles = L.tileLayer.provider('OpenStreetMap');
+var terrainTiles  = L.tileLayer.provider('OpenTopoMap');
+var osmgrigio  = L.tileLayer.provider('OpenStreetMap.BlackAndWhite');
+var esriworld  = L.tileLayer.provider('Esri.WorldImagery');
+
+
+var map = L.map('map', {
+    center: [44.3967,8.6732],
+    measureControl:true,
+    zoom: 16,
+    layers: [osmgrigio]
+});
+
+
+var osmGeocoder = new L.Control.OSMGeocoder({
+            collapsed: false,
+            position: 'bottomright',
+            text: 'Ricerca via e civico!'
+     });
+map.addControl(osmGeocoder);
+
+
+ var realvista = L.tileLayer.wms("http://213.215.135.196/reflector/open/service?", {
+        layers: 'rv1',
+        format: 'image/jpeg',attribution: '<a href="http://www.realvista.it/website/Joomla/" target="_blank">RealVista &copy; CC-BY Tiles</a> | <a href="http://openstreetmap.org">OSM</a> contr.s'
+    });
+
+map.addControl(realvista);
+
+var minx="8.58158510341350"
+var miny="44.37362932551235"
+var maxx="8.74939895901150"
+var maxy="44.47451414351876"
+
+
+var ctr= L.tileLayer('../cust_tiles/ctr/{z}/{x}/{y}.png', {
+       //noWrap: true,
+       crs: L.CRS.EPSG3857,
+       tms: true,   
+       bounds: [[miny,minx],[maxy,maxx]]
+    }).setOpacity(0.4)
+
+
+//var baseMaps = {
+//    "Openstreetmap": osmTiles
+//};
+
+
+var overlayMaps = {
+        "Openstreetmap": osmTiles,
+    "RealVista": realvista,
+    "Esri World Imagery": esriworld,    
+    "OpenstreetMap grigio": osmgrigio,
+    "Carta tecnica Regionale" : ctr
+};
+
+//L.control.layers(baseMaps,overlayMaps).addTo(map);
+L.control.layers(overlayMaps).addTo(map);
+
+ 
+var mygeojson; 
+    
+ $.getJSON("/cgi-bin/mappa_multi.py?cFrom="+cFrom, function(data) { addDataToMap(data, map); });
+
+
+    function addDataToMap(data, map) {
+        mygeojson = L.geoJson(data, { style: style, 
+        onEachFeature: function(feature, layer) {
+            var popupText = "Foglio: " + feature.properties.foglio
+                + "<br>Mappale: " + feature.properties.mappale
+                + "<br><a href=http://"+document.location.hostname+"/cxc/nctr_results.php?f="+feature.properties.foglio+"&m="+feature.properties.mappale+" target=_blank>Ricerca possessori globale</a>"
+                + "<br><a href=/cgi-bin/genera_html_su_fog_map_ter.py?f="+feature.properties.foglio+"&m="+feature.properties.mappale+" target=_blank>Ricerca possessori in terreni</a>";
+            layer.bindPopup(popupText);
+            layer.on({mouseover: highlightFeature,mouseout: resetHighlight,click: zoomToFeature});
+             }
+           });
+        map.fitBounds(mygeojson.getBounds());
+        mygeojson.addTo(map);
+      }
+
+      document.getElementById('export').onclick = function(e) {
+          // Extract GeoJson from dataLayer
+          var data = mygeojson.toGeoJSON();
+          var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+          document.getElementById('export').setAttribute('href', 'data:' + convertedData);          
+          document.getElementById('export').setAttribute('download','estr_ct_opencatamap.geojson');
+        }
+
+
+var info = L.control();
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+};
+	
+    
+ // method that we will use to update the control based on feature properties passed
+info.update = function (props) {
+    this._div.innerHTML = '<h4>Foglio/mappale</h4>' +  (props ?
+        'Foglio <b>' + props.foglio + '</b><br /> mappale ' + props.mappale 
+        : 'Passa mouse su mappale');
+};
+
+info.addTo(map);
+
+
+// get color in dipendenza del valore (foglio)
+    function getColor(d) {
+        return d > 25 ? '#800026' :
+        d > 24  ? '#BD0026' :
+        d > 23  ? '#E31A1C' :
+        d > 22  ? '#FC4E2A' :
+        d > 21  ? '#FD8D3C' :
+        d > 20  ? '#FEB24C' :
+        d > 19  ? '#FED976' :
+        d > 18  ? '#BD0026' :
+        d > 17  ? '#E31A1C' :
+        d > 16  ? '#FC4E2A' :
+        d > 15  ? '#FD8D3C' :
+        d > 14  ? '#FEB24C' :
+        d > 13  ? '#FED976' :
+        d > 12  ? '#BD0026' :
+        d > 11  ? '#E31A1C' :
+        d > 10  ? '#FC4E2A' :
+        d > 9   ? '#FD8D3C' :
+        d > 8   ? '#FEB24C' :
+        d > 7   ? '#FED976' :
+        d > 6   ? '#BD0026' :
+        d > 4   ? '#E31A1C' :
+        d > 4   ? '#FC4E2A' :
+        d > 2   ? '#FD8D3C' :
+        d > 2   ? '#FEB24C' :
+        d > 1   ? '#1E90FF' :
+        '#FFEDA0';
+	}
+
+
+
+
+	function style(feature) {
+		return {
+			weight: 1,
+			opacity: 1,
+			color: 'black',
+			//dashArray: '3',
+			fillOpacity: 0.4,
+			fillColor: getColor(feature.properties.foglio)
+		};
+	}
+
+	function highlightFeature(e) {
+		var layer = e.target;
+		layer.setStyle({
+			weight: 1,
+			color: 'red',
+			dashArray: '3',
+			fillOpacity: 0.6
+		});
+
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+			layer.bringToFront();
+		}
+
+		info.update(layer.feature.properties);
+	}
+
+
+	function resetHighlight(e) {
+		mygeojson.resetStyle(e.target);
+		info.update();
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: zoomToFeature
+		});
+	}   
+
+
+
+</script>
+
+
+</body>
+</html>
+
