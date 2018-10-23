@@ -1,2 +1,3 @@
 In questa cartella potete aggiungere OPZIONALMENTE 
-le tiles per la costra cartografia: solitamente la CTR del proprio comune trasformata in tiles
+le tiles per la costra cartografia: solitamente è il raster georeferenziato della CTR del comune 
+trasformato in tiles per tutti i livelli di zoom previsti 
