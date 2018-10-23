@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import cgi
-import sqlite3, re, string, codecs
+import sqlite3, re, string, codecs, os
 
 def cercaurbano(cNominativo):
 
@@ -65,6 +65,18 @@ def main():
     print '</style>'
     print '</head>'
     print '<body>' 
+
+    glofile='./data/catasto.db'
+    mess=''
+    if not os.path.exists(glofile):
+        mess+="Manca il file -- " + glofile + '<br>'
+    glofile='./data/catasto_cart_4326.sqlite'
+    if not os.path.exists(glofile):
+        mess+="Manca il file -- " + glofile
+    if len(mess)>0:
+    	print mess
+        return 
+
     if  (len(parametri) < 1):
         print "uso:<br> http://127.0.0.1:8080/cgi-bin/genera_html_su_urbano.py?N=Dam"
 
