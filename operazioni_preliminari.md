@@ -1,6 +1,13 @@
 **Operazioni preliminari da eseguire in dipendenza del vostro sistema operativo per ottenere l'ambiente corretto all'esecuzione degli scripts python ed a rendere disponibili a python i moduli che sono necessari:**
 
 **---- Linux**
+in ubuntu 20.04
+
+    sudo apt-get install python-pyspatialite python3-geojson libsqlite3-mod-spatialite
+
+in ubuntu 18.04
+
+
 in ubuntu 16.10 installare 
 
     sudo apt-get install python-pyspatialite python-geojson
